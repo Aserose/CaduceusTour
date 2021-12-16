@@ -1,0 +1,91 @@
+menu :
+  button :
+    back :         "назад"
+    organization : "организация"
+    address :      "юр.адрес"
+    name :         "наименование"
+    view :         "просмотр"
+    overview :     "характеристика"
+    list :         "список закупок"
+    compare :      "сравнить"
+    region :       "регион"
+    menu :         "главное меню"
+    next :         "дальше"
+    nextRow :      "промотать ряд"
+    load :         "документ"
+    code :         "код региона"
+    intermediate : "параметр"
+
+response :
+  view :
+    format : "%d из %d\n\n
+    * Наименование организации: %s (%d регион)\n\n
+    * Услуга: %s\n\n
+    * Дата подачи заявки: %s\n\n
+    * Тип закупки: %s\n\n
+    * Порядок подачи заявки: %s\n\n
+    * Место подачи заявки: %s\n\n
+    * Стоимость: %s\n(%s)\n\n
+    * Состояние: %s (%s)\n\n"
+  overview :
+    withMonth :    "*наименование: %s (%d регион)\n\n
+  *показатели на период %s — %s:\n\nсреднемесячная сумма затрат в течение %d мес.: \n%d руб.\n(%s)\n\n
+  усреднённый уровень затрат на %d успешно завершенных закупок: \n%d руб\n(%s)\n\n
+  максимальная цена закупки:\n%d руб.\n(%s)\nинформация о закупке:\n%s\n\n
+  минимальная цена закупки: \n%d руб.\n(%s)\nинформация о закупке:\n%s"
+    withoutMonth : "*наименование: %s (%d регион)\n\n
+    *показатели на период %s — %s:\n\n
+    усреднённый уровень затрат на %d успешно завершенных закупок: \n%d руб.\n(%s)\n\n
+    максимальная цена контракта:\n%d руб.\n(%s)\nинформация о контракте:\n%s\n\n
+    минимальная цена контракта: \n%d руб.\n(%s)\nинформация о контракте:\n%s"
+  msgToUser:
+    enterAddress: введите юридический адрес организации
+    enterName:    введите наименование организации
+    enterRegion: введите код региона
+    none: не найдено
+    processing: идёт обработка
+    incorrect : неверный формат
+
+type :
+  fcsNotification111 :    закупка в соответствии со ст. 111 № 44:ФЗ
+  fcsNotificationEF :     электронный аукцион
+  fcsNotificationEP :     закупка у ЕП (единственного поставщика)
+  fcsNotificationOK :     открытый конкурс
+  fcsNotificationOKOU :   конкурс с ограниченным участием
+  fcsNotificationOKD :    двухэтапный конкурс
+  fcsNotificationPO :     предварительный отбор
+  fcsNotificationZakA :   закрытый аукцион
+  fcsNotificationZakK :   закрытый конкурс
+  fcsNotificationZakKD :  закрытый двухэтапный конкурс
+  fcsNotificationZakKOU : закрытый конкурс с ограниченным участием
+  fcsNotificationZK :     запрос котировок
+  fcsNotificationZP :     запрос предложений
+  epNotificationEOK :     открытый конкурс в электронной форме
+  epNotificationEOKD :    двухэтапный конкурс в электронной форме
+  epNotificationEOKOU :   открытый конкурс с ограниченным участием в электронной форме
+  epNotificationEZK :     запрос котировок в электронной форме
+  epNotificationEZP :     Запрос предложений в электронной форме
+  pprf615NotificationEF : электронный аукцион по ПП РФ № 615
+  pprf615NotificationPO : предварительный отбор по ПП РФ № 615
+
+state :
+  proposal:   запрос предложений
+  commission: работа комиссии
+  completed:  закупка завершена
+  cancelled:  закупка отменена
+
+status :
+  processingStatus :
+    main :         " "
+    region :       region
+    organization : organization
+    address :      address
+    name :         name
+    view :         view
+    overview :     overview
+    code :         code
+    intermediate : intermediate
+  searchStatus :
+    none : not found
+
+port: ":3000"

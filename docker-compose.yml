@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  web:
+    build: ./
+    image: caduceus-tour:0.0.5
+    command: ./app
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    env_file: .env
+
+
+
+  db:
+    restart: always
+    image: mongo:latest
+    hostname: mongodb
+    env_file: .env
+    ports:
+      - "27017:27017"
+    volumes :
+      - ./db:/db
