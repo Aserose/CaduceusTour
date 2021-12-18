@@ -108,7 +108,7 @@ func TestGPOrganization(t *testing.T) {
 	})
 }
 
-func setupGpData() (*DBData, error) {
+func setupGpData() (*MongoData, error) {
 	_, cfgDB, _, _, _ := config.Init()
 	log := logger.NewLogger()
 
@@ -118,29 +118,29 @@ func setupGpData() (*DBData, error) {
 		return nil, err
 	}
 
-	return NewGpData(db, db.Collection("GPData"), db.Collection("AccessData"), ctx, log), nil
+	return NewMongoData(db, db.Collection("MongoAccessData"), db.Collection("AccessData"), ctx, log), nil
 }
 
-func updateToken(gpData *DBData, times time.Time) {
+func updateToken(gpData *MongoData, times time.Time) {
 	gpData.UpdateToken(updTestToken, times)
 }
 
-func putToken(gpData *DBData, times time.Time) {
+func putToken(gpData *MongoData, times time.Time) {
 	gpData.PutToken(testToken, times)
 }
 
-func getToken(gpData *DBData, times time.Time) string {
+func getToken(gpData *MongoData, times time.Time) string {
 	return gpData.GetToken(times)
 }
 
-func putOrganization(gpData *DBData, org models.Organization) {
+func putOrganization(gpData *MongoData, org models.Organization) {
 	gpData.Put(org)
 }
 
-func getNames(gpData *DBData) []string {
+func getNames(gpData *MongoData) []string {
 	return gpData.GetListNames()
 }
 
-func getOrganization(gpData *DBData, name string) models.Organization {
+func getOrganization(gpData *MongoData, name string) models.Organization {
 	return gpData.Get(name)
 }

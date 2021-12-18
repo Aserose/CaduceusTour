@@ -12,13 +12,13 @@ type GosplanApi interface {
 }
 
 type gosplan struct {
-	gpData        data.AccessData
+	gpData        *data.MongoData
 	cfg           *config.GPConfig
 	log           logger.Logger
 	transcription config.TranscriptRespSource
 }
 
-func NewGosplanAPI(gpData data.AccessData, cfg *config.GPConfig, log logger.Logger, transcription config.TranscriptRespSource) GosplanApi {
+func NewGosplanAPI(gpData *data.MongoData, cfg *config.GPConfig, log logger.Logger, transcription config.TranscriptRespSource) GosplanApi {
 	return &gosplan{
 		gpData:        gpData,
 		cfg:           cfg,

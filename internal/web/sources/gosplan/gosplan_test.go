@@ -42,7 +42,7 @@ func setup() (GosplanApi, error) {
 
 	}
 
-	gpData := data.NewGpData(db, db.Collection(cfgDB.MongoDB.GPData), db.Collection(cfgDB.MongoDB.Access), context.Background(), logs)
+	gpData := data.NewMongoData(db, db.Collection(cfgDB.MongoDB.GPData), db.Collection(cfgDB.MongoDB.Access), context.Background(), logs)
 
 	return NewGosplanAPI(gpData, cfgGP, logs, transcription), nil
 }

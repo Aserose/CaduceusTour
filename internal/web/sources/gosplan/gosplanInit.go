@@ -45,10 +45,10 @@ func (g *gosplan) init() (string, time.Time) {
 }
 
 func (g *gosplan) getAccess() {
-	switch g.gpData.GetToken(time.Now()) {
+	switch g.gpData.AccessData.GetToken(time.Now()) {
 	case "overdue":
-		g.gpData.UpdateToken(g.init())
+		g.gpData.AccessData.UpdateToken(g.init())
 	case "empty":
-		g.gpData.PutToken(g.init())
+		g.gpData.AccessData.PutToken(g.init())
 	}
 }

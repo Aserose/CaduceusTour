@@ -29,7 +29,7 @@ func Start() {
 
 	strCfg, transcription, serverCfg := config.InitStrCfg("configs/configs.yml")
 
-	gpData := data.NewGpData(db, db.Collection(cfgDB.MongoDB.GPData), db.Collection(cfgDB.MongoDB.Access), ctxDB, log)
+	gpData := data.NewMongoData(db, db.Collection(cfgDB.MongoDB.GPData), db.Collection(cfgDB.MongoDB.Access), ctxDB, log)
 
 	tgApi := tg.NewTgApi(log, strCfg)
 	tgApi.Init(cfgTG.TokenTG, cfgTG.AppURL)

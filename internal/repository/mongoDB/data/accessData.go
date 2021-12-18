@@ -3,13 +3,29 @@ package data
 import (
 	"context"
 	"github.com/Aserose/CaduceusTour/internal/repository/models"
+	"github.com/Aserose/CaduceusTour/pkg/logger"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
 	"time"
 )
 
-func (g DBData) PutToken(token string, time time.Time) {
+type MongoAccessData struct {
+	accessData *mongo.Collection
+	ctx context.Context
+	log logger.Logger
+}
+
+func NewGPData(accessData *mongo.Collection, ctx context.Context, log logger.Logger) *MongoAccessData {
+	return &MongoAccessData{
+		accessData: accessData,
+		ctx: ctx,
+		log: log,
+	}
+}
+
+func (g MongoAccessData) PutToken(token string, time time.Time) {
 	g.log.Info("gpData: put token")
 	gpScheme := models.GP{
 		Token:    token,
@@ -24,7 +40,7 @@ func (g DBData) PutToken(token string, time time.Time) {
 	toEnv(token)
 }
 
-func (g DBData) UpdateToken(token string, time time.Time) {
+func (g MongoAccessData) UpdateToken(token string, time time.Time) {
 	g.log.Info("gpData: update token")
 	filter := bson.D{}
 	update := bson.D{{"$set", bson.D{{"token", token}, {"tokenttl", time}}}}
@@ -37,7 +53,7 @@ func (g DBData) UpdateToken(token string, time time.Time) {
 	toEnv(token)
 }
 
-func (g DBData) GetToken(times time.Time) string {
+func (g MongoAccessData) GetToken(times time.Time) string {
 	g.log.Info("gpData: get token")
 	var gpScheme models.GP
 	filter := bson.D{}
@@ -55,11 +71,6 @@ func (g DBData) GetToken(times time.Time) string {
 	toEnv(gpScheme.Token)
 
 	return "ok"
-}
-
-func (g DBData) Delete() {
-	g.log.Info("gpData: deleting data")
-	g.db.Drop(context.TODO())
 }
 
 func toEnv(token string) {

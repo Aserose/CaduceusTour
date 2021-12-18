@@ -26,7 +26,7 @@ type OrganizationData interface {
 	DeleteOrganization(name string)
 }
 
-type DBData struct {
+type MongoData struct {
 	db         *mongo.Database
 	gpData     *mongo.Collection
 	accessData *mongo.Collection
@@ -37,12 +37,14 @@ type DBData struct {
 	OrganizationData
 }
 
-func NewGpData(db *mongo.Database, gpData *mongo.Collection, accessData *mongo.Collection, ctx context.Context, log logger.Logger) *DBData {
-	return &DBData{
+func NewMongoData(db *mongo.Database, gpData *mongo.Collection, accessData *mongo.Collection, ctx context.Context, log logger.Logger) *MongoData {
+	return &MongoData{
 		db:         db,
 		ctx:        ctx,
 		log:        log,
 		gpData:     gpData,
 		accessData: accessData,
+		AccessData: NewGPData(accessData,ctx,log),
+		OrganizationData: NewGPOrganizationData(gpData,ctx,log),
 	}
 }
