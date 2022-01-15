@@ -41,7 +41,7 @@ ____
 + 2.3. After processing, the bot will send a message about the tenders with the highest price and the view menu will open ("summary", "next", "document", "menu"). The next tenders are arranged in descending order of price - there are "next" and "document" buttons to view them. If you click the second button, the bot offers you to download a text document with 20 tenders. The "feature" button shows a summary of the organisation whose information was sent by the bot in the last message.
  
  ____
-### technical information
+### Technical Information
 
 The connection to the Telegram messenger API is made using the Webhook method. 
 
